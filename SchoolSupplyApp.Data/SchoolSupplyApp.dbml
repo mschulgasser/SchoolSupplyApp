@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="SchoolSuppliesDB" Class="SchoolSupplyAppDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\sqlexpress;Initial Catalog=SchoolSuppliesDB;Integrated Security=True" SettingsObjectName="SchoolSupplyApp.Data.Properties.Settings" SettingsPropertyName="SchoolSuppliesDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Supplies" Member="Supplies">
+    <Type Name="Supply">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Supply_ListSupply" Member="ListSupplies" ThisKey="Id" OtherKey="SupplyId" Type="ListSupply" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Families" Member="Families">
+    <Type Name="Family">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Family_Children" Member="Childrens" ThisKey="Id" OtherKey="FamilyId" Type="Children" />
+      <Association Name="Family_Children1" Member="Childrens1" ThisKey="Id" OtherKey="FamilyId" Type="Children" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ListSupply" Member="ListSupplies">
+    <Type Name="ListSupply">
+      <Column Name="SupplyId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ListId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Supply_ListSupply" Member="Supply" ThisKey="SupplyId" OtherKey="Id" Type="Supply" IsForeignKey="true" />
+      <Association Name="List_ListSupply" Member="List" ThisKey="ListId" OtherKey="Id" Type="List" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Schools" Member="Schools">
+    <Type Name="School">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminFirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="AdminLastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordSalt" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PasswordHash" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="School_List" Member="Lists" ThisKey="Id" OtherKey="SchoolId" Type="List" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Lists" Member="Lists">
+    <Type Name="List">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Grade" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="List_ListSupply" Member="ListSupplies" ThisKey="Id" OtherKey="ListId" Type="ListSupply" />
+      <Association Name="School_List" Member="School" ThisKey="SchoolId" OtherKey="Id" Type="School" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Children" Member="Childrens">
+    <Type Name="Children">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FamilyId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Grade" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="SchoolId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Family_Children" Member="Family" ThisKey="FamilyId" OtherKey="Id" Type="Family" IsForeignKey="true" />
+      <Association Name="Family_Children1" Member="Family1" ThisKey="FamilyId" OtherKey="Id" Type="Family" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

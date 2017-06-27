@@ -1,0 +1,50 @@
+﻿@using SchoolSupplyApp.Data
+@using SchoolSupplyApp.Models
+@model SuppliesViewModel
+@{
+    ViewBag.Title = "Supplies";
+}
+
+<div class="row">
+    <div class="col-md-4 col-md-offset-4 well">
+        <div class="col-md-offset-2">
+            <h2 id="form-title">Add New Supply</h2>
+        </div>
+        <form action="/admin/addsupply" method="post" id="form">
+            <div class="col-md-5 col-md-offset-2">
+                <input type="hidden" name="id" id="supply-id" />
+                <input type="text" class="form-control" placeholder="Supply Name" name="name" id="supply-name" />
+            </div>
+            <div class="col-md-3">
+                <button class="btn btn-success" id="form-submit">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (Supply s in Model.Supplies)
+            {
+                <tr>
+                    <td>@s.Name</td>
+                    <td>
+                        <button class="btn btn-primary edit" data-id="@s.Id" data-name="@s.Name">Edit</button>
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script src="~/Scripts/supplies.js"></script>
+}

@@ -1,0 +1,56 @@
+﻿@using SchoolSupplyApp.Data;
+@using SchoolSupplyApp.Models;
+@model IndexViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<form method="post" action="/home/addfamily">
+    <div class="row">
+        <div class="col-md-3 col-md-offset-4 well">
+            <h2>Family Information</h2>
+            <input type="text" name="name" class="form-control" placeholder="Family Name" />
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-bordered table-striped table-hover">
+                    <tr>
+                        <th>Child's Name</th>
+                        <th>School</th>
+                        <th>Grade</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" placeholder="Child's Name" name="children[0].name" />
+                        </td>
+                        <td>
+                            <select class="form-control school-select" name="children[0].schoolId">
+                                <option value="0">*** SELECT A SCHOOL ***</option>
+                                @foreach (School s in Model.Schools)
+                                {
+                                    <option value="@s.Id">@s.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <select  class="form-control grade-select" name="children[0].grade">
+                                <option value="0">*** SELECT A GRADE ***</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-success" id="add-child">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-2 col-md-offset-5">
+            <button class="btn btn-info btn-lg">Done</button>
+        </div>
+    </div>
+</form>
+
+@section scripts 
+{
+    <script src="/Scripts/index.js"></script>
+}

@@ -1,0 +1,59 @@
+﻿@using SchoolSupplyApp.Data;
+@using SchoolSupplyApp.Models;
+@model CreateListViewModel
+@{
+    ViewBag.Title = "CreateList";
+}
+<div class="container">
+    <form method="post" action="/admin/addlist">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-2">
+               <h3>Create a new list for @Model.School.Name</h3>
+            </div>
+            <div class="col-md-2">
+                <input type="text" name="grade" placeholder="Grade" class="form-control" id="grade"/>
+                <input type="hidden" value="@Model.School.Id" name="schoolId" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <table class="table table-hover table-bordered table-striped">
+                    <tr>
+                        <th>Supply</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select name="listSupplies[0].SupplyId" class="form-control">
+                                <option value="0">*** SELECT A SUPPLY ***</option>
+                                @foreach (Supply s in Model.Supplies)
+                                {
+                                    <option value="@s.Id">@s.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <select name="listSupplies[0].Quantity" class="form-control">
+                                @for (int i = 1; i <= 100; i++)
+                                {
+                                    <option>@i</option>
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="button" class="btn btn-success" id="add-supply"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
+            </div>
+        </div>
+        <div class="row" style="margin-top:30px">
+            <div class="col-md-4 col-md-offset-2">
+                <button class="btn btn-primary btn-lg" id="add-list" disabled>Add List</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section scripts
+{
+    <script src="/Scripts/createList.js"></script>
+}

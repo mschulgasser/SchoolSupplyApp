@@ -1,0 +1,42 @@
+﻿@using SchoolSupplyApp.Data;
+@using SchoolSupplyApp.Models;
+@model ListViewModel
+@{
+    ViewBag.Title = "List";
+}
+@if (Model.Message != null)
+{
+    <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        @Model.Message
+    </div>
+}
+
+<a href="/admin/lists" class="btn btn-primary">Back to Lists</a>
+<h2>@Model.List.School.Name Grade @Model.List.Grade</h2>
+<table class="table table-hover table-bordered table-striped">
+    <tr>
+        <th>Supply Name</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (ListSupply ls in Model.Supplies)
+    {
+    <tr>
+        <td>@ls.Supply.Name</td>
+        <td>@ls.Quantity</td>
+        <td>
+            <button class="btn btn-primary edit" data-quantity="@ls.Quantity" data-supply-id="@ls.SupplyId" 
+                    data-supply-name="@ls.Supply.Name" data-list-id="@ls.ListId">Edit</button>
+            <button class="btn btn-danger remove" data-supply-id="@ls.SupplyId" data-list-id="@ls.ListId">Remove</button>
+        </td>
+    </tr>
+    }
+</table>
+<button class="btn btn-success" id="add-supply" data-list-id="@Model.List.Id">
+    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+</button>
+@section scripts
+{
+    <script src="/Scripts/list.js"></script>
+}

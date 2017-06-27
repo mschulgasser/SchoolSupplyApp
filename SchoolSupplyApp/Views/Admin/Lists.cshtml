@@ -1,0 +1,28 @@
+﻿@using SchoolSupplyApp.Data;
+@using SchoolSupplyApp.Models;
+@model ListsViewModel
+
+@{
+    ViewBag.Title = "Lists";
+}
+<a href="/admin/createlist" class="btn btn-primary">Add New List</a>
+<div class="row">
+    <div class="col-md-4 col-md-offset-4">
+        <table class="table table-bordered table-hover table-striped">
+            <tr>
+                <th>School Supply Lists</th>
+            </tr>
+            @foreach (List l in Model.Lists)
+            {
+            <tr>
+                <td>
+                    <a href="/admin/list?id=@l.Id">
+                        @l.School.Name Grade @l.Grade
+                    </a>
+                </td>
+            </tr>
+            }
+        </table>
+    </div>
+</div>
+

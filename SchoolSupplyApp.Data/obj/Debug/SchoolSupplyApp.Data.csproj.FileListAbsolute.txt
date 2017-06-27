@@ -1,0 +1,6 @@
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\bin\Debug\SchoolSupplyApp.Data.dll.config
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\bin\Debug\SchoolSupplyApp.Data.dll
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\bin\Debug\SchoolSupplyApp.Data.pdb
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\obj\Debug\SchoolSupplyApp.Data.csprojResolveAssemblyReference.cache
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\obj\Debug\SchoolSupplyApp.Data.dll
+c:\users\malka\documents\visual studio 2015\Projects\SchoolSupplyApp\SchoolSupplyApp.Data\obj\Debug\SchoolSupplyApp.Data.pdb

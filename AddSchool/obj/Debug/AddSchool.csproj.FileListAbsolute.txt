@@ -1,0 +1,8 @@
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\bin\Debug\AddSchool.exe.config
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\bin\Debug\AddSchool.exe
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\bin\Debug\AddSchool.pdb
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\bin\Debug\SchoolSupplyApp.Data.dll
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\bin\Debug\SchoolSupplyApp.Data.pdb
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\obj\Debug\AddSchool.csprojResolveAssemblyReference.cache
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\obj\Debug\AddSchool.exe
+C:\Users\Malka\Documents\Visual Studio 2015\Projects\SchoolSupplyApp\AddSchool\obj\Debug\AddSchool.pdb

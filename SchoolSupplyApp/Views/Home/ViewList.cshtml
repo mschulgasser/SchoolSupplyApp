@@ -5,6 +5,7 @@
     ViewBag.Title = "ViewList";
 }
 
+
 <div class="col-md-6 col-md-offset-3">
     <h2>@Model.Family.Name's School Supply List</h2>
 </div>
@@ -13,14 +14,31 @@
         <tr>
             <th>Supply</th>
             <th>Quantity</th>
+            <th>Children</th>
         </tr>
         @foreach (SupplyWithQuantity s in Model.Supplies)
         {
             <tr>
-                <td><a href="https://www.amazon.com/s/field-keywords=@s.Supply.Name" target="_blank">@s.Supply.Name</a></td>
+                <td>
+                    @*<a href="https://www.amazon.com/s/field-keywords=@s.Supply.Name" target="_blank">@s.Supply.Name</a>*@
+                    @s.Supply.Name
+            </td>
                 <td>@s.Quantity</td>
+                <td>
+                    @foreach (Children c in s.Children)
+                    {
+                       <strong>@c.Name   </strong> 
+                    }
+                </td>
             </tr>
         }
     </table>
 </div>
+<button class="btn btn-danger" id="print">Print</button>
+@section scripts
+{
+    <script src="/Scripts/viewList.js"></script>
+}
+
+
 

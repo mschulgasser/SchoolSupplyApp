@@ -10,5 +10,6 @@ namespace SchoolSupplyApp.Data
     {
         public Supply Supply { get; set; }
         public int Quantity { get; set; }
+        public List<Children> Children { get; set; }
     }
 }

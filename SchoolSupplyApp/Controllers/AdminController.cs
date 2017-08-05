@@ -38,7 +38,7 @@ namespace SchoolSupplyApp.Controllers
         public ActionResult GetSupplies()
         {
             var repo = new SchoolSupplyRepository(Properties.Settings.Default.ConStr);
-            var supplies = repo.GetAllSupplies().Select(s => new
+            var supplies = repo.GetAllSupplies().OrderBy(s => s.Name).Select(s => new
             {
                 id = s.Id,
                 name = s.Name
@@ -90,20 +90,41 @@ namespace SchoolSupplyApp.Controllers
             {
                 TempData["Message"] = "Sorry, the supply you want to add is already on this list.  You can update the quantity if you'd like by clicking the \"edit\" button.";
             }
-            return Redirect("/admin/list?id=" + ls.ListId);
+            return Json(repo.GetListOfSupplies(ls.ListId).Select(listsupply => new
+            {
+                supplyName = listsupply.Supply.Name,
+                supplyId = listsupply.SupplyId,
+                quantity = listsupply.Quantity,
+                listId = listsupply.ListId
+            }));
+            //return Redirect("/admin/list?id=" + ls.ListId);
         }
         [HttpPost]
-        public void RemoveListSupply(int listId, int supplyId)
+        public ActionResult RemoveListSupply(int listId, int supplyId)
         {
             var repo = new SchoolSupplyRepository(Properties.Settings.Default.ConStr);
             repo.RemoveSupplyFromList(listId, supplyId);
+            return Json(repo.GetListOfSupplies(listId).Select(listsupply => new
+            {
+                supplyName = listsupply.Supply.Name,
+                supplyId = listsupply.SupplyId,
+                quantity = listsupply.Quantity,
+                listId = listsupply.ListId
+            }));
         }
         [HttpPost]
         public ActionResult UpdateListSupply(ListSupply ls)
         {
             var repo = new SchoolSupplyRepository(Properties.Settings.Default.ConStr);
             repo.UpdateListSupply(ls);
-            return Redirect("/admin/list?id=" + ls.ListId);
+            //return Redirect("/admin/list?id=" + ls.ListId);
+            return Json(repo.GetListOfSupplies(ls.ListId).Select(listsupply => new
+            {
+                supplyName = listsupply.Supply.Name,
+                supplyId = listsupply.SupplyId,
+                quantity = listsupply.Quantity,
+                listId = listsupply.ListId
+            }));
         }
     }
 }

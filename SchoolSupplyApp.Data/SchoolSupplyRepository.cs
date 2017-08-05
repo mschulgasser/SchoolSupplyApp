@@ -73,7 +73,7 @@ namespace SchoolSupplyApp.Data
                 var loadOptions = new DataLoadOptions();
                 loadOptions.LoadWith<List>(l => l.School);
                 context.LoadOptions = loadOptions;
-                return context.Lists.Where(l => l.SchoolId == schoolId).ToList();
+                return context.Lists.Where(l => l.SchoolId == schoolId).ToList().OrderBy(l => l.Grade);
             }
         }
         public IEnumerable<ListSupply> GetListOfSupplies(int listId)
@@ -85,7 +85,7 @@ namespace SchoolSupplyApp.Data
                 loadOptions.LoadWith<List>(l => l.ListSupplies);
                 loadOptions.LoadWith<List>(l => l.School);
                 context.LoadOptions = loadOptions;
-                return context.ListSupplies.Where(ls => ls.ListId == listId).ToList();
+                return context.ListSupplies.Where(ls => ls.ListId == listId).ToList().OrderBy(ls => ls.Supply.Name);
             }
         }
         public List GetList(int listId)
@@ -161,15 +161,18 @@ namespace SchoolSupplyApp.Data
                         var existingSupply = result.FirstOrDefault(s => s.Supply.Id == ls.SupplyId);
                         if(existingSupply != null)
                         {
-                            existingSupply.Quantity++;
+                            existingSupply.Quantity += ls.Quantity;
+                            existingSupply.Children.Add(c);
                         }
                         else
                         {
                             var supplyWithQuantity = new SupplyWithQuantity()
                             {
                                 Supply = ls.Supply,
-                                Quantity = ls.Quantity
+                                Quantity = ls.Quantity,
+                                Children = new List<Children>()
                             };
+                            supplyWithQuantity.Children.Add(c);
                             result.Add(supplyWithQuantity);
                         }
                     }
